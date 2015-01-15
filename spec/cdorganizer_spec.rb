@@ -24,9 +24,11 @@ describe(CD) do
       whos_next = CD.new({:album => "Who's Next", :artist => Artist.new("The Who"), :user => "Gabe"})
       expect(CD.search_for_cds({:artist => "The Who", :album => "Tommy"})).to(eq([tommy]))
       expect(CD.search_for_cds({:artist => "The Who"})).to(eq([tommy, whos_next]))
+      expect(CD.search_for_cds({:album => "Tommy"})).to(eq([tommy]))
       expect(CD.search_for_cds({})).to(eq([tommy, wall, help, whos_next]))
     end
   end
+  
 end
 
 describe(Artist) do

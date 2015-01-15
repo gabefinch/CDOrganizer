@@ -3,7 +3,6 @@ require('./lib/cdorganizer')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 
-list = []
 get('/') do
   CD.logout()
   erb(:index)
@@ -22,20 +21,22 @@ end
 
 
 post('/album_add') do
-  @album = params.fetch('album')
-  @artist = params.fetch('artist')
+  @album = params['album']
+  @artist = params['artist']
   @user = CD.get_user()
   CD.new({:album => @album, :artist => Artist.new(@artist), :user => @user})
   redirect('/home')
 end
 
 post('/search_for_CD') do
-  @album = params.fetch('album')
-  @artist = params.fetch('artist')
-  list = CD.search_for_cds(@album, @artist.name())
-  redirect('/home')
-end
-
-post('/results') do
+  @album = params['album']
+  @artist = params['artist']
+  if params['album'].==("")
+    @album = nil
+  end
+  if params['artist'].==("")
+    @artist = nil
+  end
+  @list = CD.search_for_cds({:album => @album, :artist => @artist})
   erb(:results)
 end
