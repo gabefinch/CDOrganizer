@@ -1,6 +1,9 @@
 class CD
   attr_reader(:album, :artist, :user, :id)
   @@all = []
+  @@current_user = ""
+  @@search_results = []
+
   define_method(:initialize) do |attributes|
     @album = attributes[:album]
     @artist = attributes[:artist]
@@ -8,11 +11,25 @@ class CD
     @id = @@all.length() + 1
     @@all.push(self)
   end
+
   define_singleton_method(:clear) do
     @@all = []
   end
 
+  define_singleton_method(:set_user) do |login|
+    @@current_user = login
+  end
+  define_singleton_method(:logout) do
+    @@current_user = ""
+  end
 
+  define_singleton_method(:get_user) do
+    @@current_user
+  end
+
+  define_singleton_method(:get_results) do
+    @@search_results
+  end
   define_singleton_method(:search_for_cds) do |attributes|
     found_cds = []
     search_album = attributes[:album]
@@ -28,7 +45,7 @@ class CD
         end
       end
     end
-    found_cds
+    search_results = found_cds
   end
 
 

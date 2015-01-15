@@ -1,0 +1,23 @@
+<h2>You are logged in as <%= @user %></h2>
+<form action="/"><button type="submit" class="btn btn-sm btn-primary">Logout</button></form>
+<ul>
+  <% @list.each() do |cd| %>
+  <li><%= cd.album() %> <%= cd.artist().name() %></li>
+  <% end %>
+</ul>
+
+
+<h1>Add Album</h1>
+<form id="album" action="album_add" method="post">
+  <input id="album" type="text" name="album" class="form-control" placeholder="Album Name">
+  <input id="artist" type="text" name="artist" class="form-control" placeholder="Artist Name">
+  <button type="submit" name="button" class="btn btn-sm btn-primary">Add Album</button>
+</form>
+
+
+<h1>Search</h1>
+<form id="search_for_CD" action="search_for_CD" method="post">
+  <input id="album" type="text" name="album" class="form-control" placeholder="Album Name">
+  <input id="artist" type="text" name="artist" class="form-control" placeholder="Artist Name">
+  <button type="submit" name="button" class="btn btn-sm btn-primary">Search</button>
+</form>
