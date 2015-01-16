@@ -30,6 +30,7 @@ class CD
   define_singleton_method(:get_results) do
     @@search_results
   end
+
   define_singleton_method(:search_for_cds) do |attributes|
     found_cds = []
     search_album = attributes[:album]
@@ -48,6 +49,15 @@ class CD
     search_results = found_cds
   end
 
+  define_singleton_method(:search_with_id) do |id|
+    cd_to_return = ""
+    @@all.each do |cd|
+      if (cd.id() == id.to_i)
+        cd_to_return = cd
+      end
+    end
+    cd_to_return
+  end
 
   define_singleton_method(:all) do
     @@all

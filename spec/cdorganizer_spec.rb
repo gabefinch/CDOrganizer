@@ -28,7 +28,22 @@ describe(CD) do
       expect(CD.search_for_cds({})).to(eq([tommy, wall, help, whos_next]))
     end
   end
-  
+
+
+  describe('.search_with_id') do
+    it("returns the unique cd related to the id arguement") do
+      CD.clear()
+      tommy = CD.new({:album => "Tommy", :artist => Artist.new("The Who"), :user => "Jay"})
+      wall = CD.new({:album => "The Wall", :artist => Artist.new("Pink Floyd"), :user => "Jay"})
+      help = CD.new({:album => "H.E.L.P.", :artist => Artist.new("The Beatles"), :user => "Gabe"})
+      whos_next = CD.new({:album => "Who's Next", :artist => Artist.new("The Who"), :user => "Gabe"})
+      expect(CD.search_with_id(1)).to(eq(tommy))
+      expect(CD.search_for_cds({:artist => "The Who"})).to(eq([tommy, whos_next]))
+      expect(CD.search_for_cds({:album => "Tommy"})).to(eq([tommy]))
+      expect(CD.search_for_cds({})).to(eq([tommy, wall, help, whos_next]))
+    end
+  end
+
 end
 
 describe(Artist) do

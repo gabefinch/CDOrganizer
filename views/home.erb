@@ -2,7 +2,7 @@
 <form action="/"><button type="submit" class="btn btn-sm btn-primary">Logout</button></form>
 <ul>
   <% @list.each() do |cd| %>
-  <li><%= cd.album() %> <%= cd.artist().name() %></li>
+  <li><a href ="detail/<%= cd.id() %>"><%= cd.album() %> </a> <%= cd.artist().name() %></li>
   <% end %>
 </ul>
 

@@ -28,6 +28,12 @@ post('/album_add') do
   redirect('/home')
 end
 
+get('/detail/:id') do
+  @id = params["id"]
+  @cd_info = CD.search_with_id(@id)
+  erb(:detail)
+end
+
 post('/search_for_CD') do
   @album = params['album']
   @artist = params['artist']
