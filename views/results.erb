@@ -3,6 +3,6 @@
 <h2>Search Results</h2>
 <% @list.each() do |cd| %>
 <ul>
-  <li><%= cd.album() %>  <%= cd.artist.name() %> </li>
+  <li><a href = "detail/<%= cd.id() %>"> <%= cd.album() %> </a> <%= cd.artist.name() %> </li>
 </ul>
 <% end %>
